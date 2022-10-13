@@ -59,7 +59,7 @@ def pregunta_02():
     print(round(df['life'].mean(), 4))
 
     # Imprima el tipo de dato de la columna `fertility`.
-    print(df.dtypes['fertility'])
+    print(type(df['fertility']))
 
     # Imprima la correlación entre las columnas `GDP` y `life` con 4 decimales.
     print(round(df['GDP'].corr(df['life']), 4))
@@ -142,3 +142,11 @@ def pregunta_04():
 
     # Entrene el clasificador usando X_train y y_train
     linearRegression.fit(X_train, y_train)
+    
+    # Pronostique y_test usando X_test
+    y_pred = linearRegression.predict(X_test)
+
+    # Compute and print R^2 and RMSE
+    print("R^2: {:6.4f}".format(linearRegression.score(X_test, y_test)))
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+    print("Root Mean Squared Error: {:6.4f}".format(rmse))
